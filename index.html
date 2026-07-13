@@ -7,12 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Noto+Serif+SC:wght@400;600;700;900&family=ZCOOL+XiaoWei&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/act1.css">
-  <link rel="stylesheet" href="css/age-outfit.css">
-  <link rel="stylesheet" href="css/horizontal-story.css">
-  <link rel="stylesheet" href="css/ethnic-decor.css">
-  <link rel="stylesheet" href="css/pattern-showcases.css">
+  <link rel="stylesheet" href="css/site.css">
 </head>
 <body>
   <!-- 宣纸底纹 + 四角民族纹样（全局固定层） -->
@@ -516,8 +511,18 @@
     <p class="article-p">五大环节依次为迎宾、分肉、敬酒、布菜、散席。「分福肉」为核心仪式——祭祀用猪经长辈分赠宾客与晚辈，寓意福分流转与代际感恩。</p>
 
     <figure class="figure-block">
-      <div class="embed-frame-wrap embed-frame-wrap--figure">
-        <iframe class="embed-frame" src="长街宴环形礼仪图.html" title="长街宴环形礼仪图" loading="lazy" scrolling="no"></iframe>
+      <div class="ring-ritual">
+        <div class="ring-ritual__chart" id="ring-ritual-chart">
+          <img class="ring-ritual__img" src="image/美食/环形礼仪图/长街宴礼仪流程·时空双轴图.png" alt="尊老爱幼 · 长幼有序 — 长街宴环形礼仪图" width="570" height="393" />
+          <svg class="ring-ritual__svg" viewBox="0 0 570 393" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <g class="ring-ritual__zone" data-tip="迎宾礼|村口迎客，互道祝福"><circle class="ring-ritual__hit" cx="285" cy="52" r="42"/></g>
+            <g class="ring-ritual__zone" data-tip="分福肉|重点标注：长辈优先，福泽绵长"><circle class="ring-ritual__hit" cx="468" cy="158" r="42"/></g>
+            <g class="ring-ritual__zone" data-tip="敬酒礼|晚辈向长辈敬酒，表达感恩"><circle class="ring-ritual__hit" cx="408" cy="318" r="42"/></g>
+            <g class="ring-ritual__zone" data-tip="布菜礼|长者优先享用，共享佳肴"><circle class="ring-ritual__hit" cx="162" cy="318" r="42"/></g>
+            <g class="ring-ritual__zone" data-tip="散席礼|互赠伴手礼，依依惜别"><circle class="ring-ritual__hit" cx="102" cy="158" r="42"/></g>
+          </svg>
+        </div>
+        <div class="ring-ritual__tooltip" id="ring-ritual-tooltip" role="tooltip" hidden></div>
       </div>
       <figcaption class="figure-caption">图 2：尊老爱幼 · 长幼有序（环形礼仪图）</figcaption>
       <p class="article-note">中心圈层为龙头/长辈 → 成年人/中青年 → 儿童/晚辈；外环顺时针流转迎宾、分福肉、敬酒、布菜、散席五礼。</p>
@@ -527,7 +532,7 @@
     <p class="article-p">长街宴有相对固定的十二道招牌菜（七彩糯米饭、梯田鱼、牛肉干巴等），每一道都对应一个农耕场景或劳作周期——如梯田鱼对应夏秋稻鱼共作，把「吃什么」与「何时种、何时收」绑在一起。</p>
 
     <div class="embed-frame-wrap">
-      <iframe class="embed-frame" src="长街宴十二道美食及对应农耕场景与劳作周期.html" title="长街宴十二道美食及对应农耕场景与劳作周期" loading="lazy" scrolling="no"></iframe>
+      <iframe class="embed-frame" src="embed-food.html?view=twelve" title="长街宴十二道美食及对应农耕场景与劳作周期" loading="lazy" scrolling="no"></iframe>
     </div>
     <p class="article-note">参见郑宇《民族节庆文化研究》、张禀磊《哈尼长街宴的现代再造》等。</p>
 
@@ -542,7 +547,7 @@
     <p class="article-p">总结「信仰逻辑」：家畜类（鸡、鸭、螺、黄鳝）因「不洁」或寓意歧义不上席；山林野味（竹鸡、山鸡、蜂蛹、野菌）因「野气」「珍贵」而成为祭献与宴席主角。</p>
 
     <div class="embed-frame-wrap">
-      <iframe class="embed-frame" src="禁忌类与可上席类.html" title="禁忌类与可上席类" loading="lazy" scrolling="no"></iframe>
+      <iframe class="embed-frame" src="embed-food.html?view=taboo" title="禁忌类与可上席类" loading="lazy" scrolling="no"></iframe>
     </div>
     <p class="article-note">图注：本图依据郑宇《哈尼族长街宴饮食的人类学阐释》整理。</p>
 
@@ -709,16 +714,9 @@
 
   </main>
 
-  <script src="vendor/echarts.min.js"></script>
-  <script src="vendor/chart.umd.min.js"></script>
-  <script src="vendor/chartjs-plugin-annotation.min.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/horizontal-story.js"></script>
-  <script src="js/charts.js"></script>
-  <script src="js/pattern-gallery.js"></script>
-  <script src="js/age-outfit.js"></script>
-  <script src="js/act-five.js"></script>
-  <script src="js/print-bg.js"></script>
-  <script src="js/smart-content-decor.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
