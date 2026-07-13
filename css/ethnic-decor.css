@@ -1,0 +1,720 @@
+/* ============================================================
+   哈尼族国潮民族风 · 宣纸底纹 + 智能内容装饰
+   配色：米白 #f5efe6 · 敦煌红棕 #8b1a1a · 极乐金 #d4a843
+         古墨 #3d2b1f · 哈尼青黛 #2f5a4a
+   ============================================================ */
+
+:root {
+  --paper-base: #f5efe6;
+  --dunhuang-red: #8b1a1a;
+  --bliss-gold: #d4a843;
+  --ancient-ink: #3d2b1f;
+  --cover-title-fill: #9a856e;
+  --cover-title-stroke: 5px;
+  --hani-indigo: #2f5a4a;
+  --aged-tint: rgba(180, 150, 120, 0.08);
+
+  /* 覆盖全站色板，适配宣纸浅色底 */
+  --bg-base: var(--paper-base);
+  --bg-dark: #ebe3d6;
+  --bg-warm: #e8dfd0;
+  --text: var(--ancient-ink);
+  --text-soft: #5a4638;
+  --text-muted: #7a6a58;
+  --accent-red: var(--dunhuang-red);
+  --accent-gold: var(--bliss-gold);
+  --accent-gold-light: #e8c96a;
+  --accent-indigo: var(--hani-indigo);
+  --accent-earth: #6b5344;
+  --highlight-yellow: var(--bliss-gold);
+  --ethnic-pattern: rgba(139, 26, 26, 0.04);
+  --ethnic-pattern-red: rgba(47, 90, 74, 0.035);
+  --text-body: rgba(61, 43, 31, 0.88);
+  --text-body-soft: rgba(61, 43, 31, 0.62);
+  --text-body-muted: rgba(61, 43, 31, 0.45);
+
+  /* 印刷底纹：黑色 → 深棕古墨（偏淡） */
+  --print-opacity: 0.30;
+  --print-ink: #4a3528;
+  --print-filter: sepia(0.55) hue-rotate(352deg) saturate(0.58) brightness(1.18) contrast(0.68);
+  --print-paper-veil: rgba(245, 239, 230, 0.38);
+}
+
+/* ── 全局宣纸底 ── */
+body {
+  background-color: var(--paper-base);
+  background-image: none;
+  color: var(--text);
+}
+
+/* 浅色底文字适配 — body 前缀提升优先级，覆盖各篇章 CSS */
+body .intro p,
+body .content p,
+body .content-divider,
+body .article-p,
+body .article-list li,
+body .article-list li strong,
+body .article-note,
+body .article-conclusion,
+body .article-summary,
+body .act-one-title,
+body .act-one-question,
+body .chart-caption,
+body .metric-label,
+body footer,
+body .footer-ethnic,
+body .story-scroll-hint,
+body .pattern-overlap__title,
+body .age-outfit__hint,
+body .figure-caption,
+body .media-placeholder__label,
+body .media-placeholder__hint,
+body .radar-insights__conclusion,
+body .memory-poster__intro,
+body .memory-poster__card-line,
+body .memory-poster__card-score,
+body .memory-poster__footer,
+body .article-quote,
+body .chart-title,
+body .chart-caption-inner,
+body .chart-edit-note,
+body .article-subtitle,
+body .source-ref,
+body .ritual-flow__caption,
+body .embed-frame-wrap + .article-note,
+body html.story-layered .story-nav__item,
+body html.story-layered .story-scroll-hint {
+  color: var(--text-body);
+}
+
+body .cover-screen__title,
+body html.story-layered .cover-screen__title {
+  color: var(--cover-title-fill);
+  -webkit-text-fill-color: var(--cover-title-fill);
+  -webkit-text-stroke: var(--cover-title-stroke) var(--accent-red);
+  paint-order: stroke fill;
+  font-weight: 700;
+  transform: translateX(-450px);
+}
+
+body .cover-screen__bridge,
+body html.story-layered .cover-screen__bridge {
+  color: var(--color-cover-subtitle);
+  font-weight: 700;
+}
+
+body .intro em,
+body .highlight-red,
+body .dimension-tag,
+body .cover-screen__hook,
+body html.story-layered .cover-screen__hook {
+  color: var(--dunhuang-red);
+  font-weight: 700;
+}
+
+body .metric-value,
+body .highlight-gold,
+body .dashboard-title,
+body .article-h4,
+body .intro-label,
+body .act-number {
+  color: var(--bliss-gold);
+}
+
+body .intro-label {
+  font-family: '禹卫书法行书', 'Ma Shan Zheng', cursive;
+}
+
+body .act-one-header .act-number,
+body .act-one-title,
+body .act-one-question {
+  font-family: var(--font-act-header);
+  font-weight: 700;
+}
+
+body .article-h3 {
+  color: var(--hani-indigo);
+}
+
+body .act-one-question,
+body .article-note,
+body .metric-label,
+body .content-divider,
+body .chart-edit-note,
+body .source-ref,
+body html.story-layered .story-nav__item,
+body html.story-layered .story-scroll-hint {
+  color: var(--text-body-soft);
+}
+
+body html.story-layered .story-nav__item.is-active,
+body html.story-layered .story-nav__item:hover,
+body .story-nav__item.is-active,
+body .story-nav__item:hover {
+  color: var(--dunhuang-red);
+}
+
+body .nav-toggle span {
+  background: var(--ancient-ink);
+}
+
+body .hero-char,
+body html.story-layered .cover-screen__feast .hero-char {
+  color: var(--ancient-ink);
+}
+
+body footer {
+  color: var(--text-body-muted);
+}
+
+body .footer-ethnic {
+  color: rgba(212, 168, 67, 0.75);
+}
+
+/* ── 固定背景装饰层 ── */
+.ethnic-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* 民族图鉴印刷底纹 — 01/02 交替，黑色淡化如印上去 */
+.ethnic-print-stack {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.ethnic-print-stack__layer {
+  position: absolute;
+  inset: -4%;
+  opacity: 0;
+  transition: opacity 0.75s ease;
+}
+
+.ethnic-print-stack__layer.is-active {
+  opacity: 1;
+}
+
+.ethnic-print-bg {
+  position: absolute;
+  inset: -2%;
+  z-index: 0;
+  pointer-events: none;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  opacity: var(--print-opacity);
+  mix-blend-mode: multiply;
+  filter: var(--print-filter);
+}
+
+/* 将纹样中的黑色叠染为深棕 */
+.ethnic-print-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: var(--print-ink);
+  opacity: 0.09;
+  mix-blend-mode: color;
+}
+
+.ethnic-print-bg--a {
+  background-image: url('../image/背景/01.jpg');
+}
+
+.ethnic-print-bg--b {
+  background-image: url('../image/背景/02.jpg');
+}
+
+.ethnic-print-bg__wash {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(245, 239, 230, 0.10) 12%,
+    rgba(245, 239, 230, 0.36) 32%,
+    rgba(245, 239, 230, 0.48) 50%,
+    rgba(245, 239, 230, 0.36) 68%,
+    rgba(245, 239, 230, 0.10) 88%,
+    transparent 100%
+  );
+}
+
+/* 宣纸薄罩：叠在印刷层上，不盖住左右/下方纹样 */
+html.story-layered .story-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: var(--print-paper-veil);
+}
+
+html.story-layered .story-panel {
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+html.story-layered .cover-screen,
+html.story-layered .story-panel__scroll {
+  background: transparent;
+}
+
+/* 桌面分层滚动：每幕自带印刷底，隐藏固定层避免叠影 */
+html.story-layered .ethnic-print-stack {
+  visibility: hidden;
+}
+
+html.story-layered .story-panel .ethnic-print-bg {
+  inset: -2%;
+}
+
+.ethnic-bg__layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* 1. 宣纸纤维纹理 + 细微颗粒感 */
+.ethnic-bg__fiber {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 2px,
+      rgba(61, 43, 31, 0.016) 2px,
+      rgba(61, 43, 31, 0.016) 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 4px,
+      rgba(61, 43, 31, 0.011) 4px,
+      rgba(61, 43, 31, 0.011) 5px
+    ),
+    radial-gradient(circle at 20% 30%, rgba(180, 150, 120, 0.04) 0, transparent 50%),
+    radial-gradient(circle at 75% 65%, rgba(139, 26, 26, 0.02) 0, transparent 45%);
+  opacity: 0.9;
+}
+
+/* 2. 四角做旧晕染 */
+.ethnic-bg__aged {
+  background:
+    radial-gradient(ellipse 50% 42% at 0% 0%, var(--aged-tint), transparent 72%),
+    radial-gradient(ellipse 50% 42% at 100% 0%, var(--aged-tint), transparent 72%),
+    radial-gradient(ellipse 50% 42% at 0% 100%, var(--aged-tint), transparent 72%),
+    radial-gradient(ellipse 50% 42% at 100% 100%, var(--aged-tint), transparent 72%);
+}
+
+/* 3–5. 四角纹样 */
+.ethnic-bg__corner {
+  position: absolute;
+  width: clamp(100px, 20vw, 260px);
+  height: clamp(100px, 20vw, 260px);
+  pointer-events: none;
+}
+
+.ethnic-bg__corner svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.ethnic-bg__corner--tl {
+  top: clamp(8px, 2vh, 24px);
+  left: clamp(8px, 2vw, 24px);
+  opacity: 0.10;
+}
+
+.ethnic-bg__corner--tr {
+  top: clamp(8px, 2vh, 24px);
+  right: clamp(8px, 2vw, 24px);
+  opacity: 0.08;
+}
+
+.ethnic-bg__corner--bl {
+  bottom: clamp(8px, 2vh, 24px);
+  left: clamp(8px, 2vw, 24px);
+  opacity: 0.08;
+}
+
+.ethnic-bg__corner--br {
+  bottom: clamp(8px, 2vh, 24px);
+  right: clamp(8px, 2vw, 24px);
+  opacity: 0.08;
+}
+
+/* 左右固定纹样栏 — 落在视口两侧留白，中间正文区保持素净 */
+.ethnic-bg__rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(72px, 11vw, 148px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ethnic-bg__rail--left {
+  left: clamp(4px, 1.2vw, 20px);
+}
+
+.ethnic-bg__rail--right {
+  right: clamp(4px, 1.2vw, 20px);
+}
+
+.ethnic-bg__motif {
+  position: absolute;
+  top: var(--motif-top, 20%);
+  left: 50%;
+  width: clamp(64px, 9vw, 112px);
+  height: clamp(64px, 9vw, 112px);
+  transform: translate(-50%, -50%);
+  opacity: 0.11;
+}
+
+.ethnic-bg__motif--sm {
+  width: clamp(48px, 7vw, 84px);
+  height: clamp(48px, 7vw, 84px);
+  opacity: 0.085;
+}
+
+.ethnic-bg__rail--right .ethnic-bg__motif:nth-child(odd) {
+  transform: translate(-50%, -50%) scaleX(-1);
+}
+
+.ethnic-bg__motif svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 中间正文带轻微遮罩，纹样不侵入阅读区 */
+.ethnic-bg__veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    transparent 10%,
+    rgba(245, 239, 230, 0.22) 20%,
+    rgba(245, 239, 230, 0.55) 38%,
+    rgba(245, 239, 230, 0.62) 50%,
+    rgba(245, 239, 230, 0.55) 62%,
+    rgba(245, 239, 230, 0.22) 80%,
+    transparent 90%,
+    transparent 100%
+  );
+}
+
+@media (max-width: 900px) {
+  .ethnic-bg__motif { opacity: 0.07; }
+  .ethnic-bg__motif--sm { opacity: 0.055; }
+}
+
+@media (max-width: 600px) {
+  .ethnic-bg__rail { width: clamp(48px, 14vw, 72px); }
+  .ethnic-bg__motif { opacity: 0.05; }
+  .ethnic-bg__motif--sm { opacity: 0.04; }
+}
+
+/* SVG 精灵隐藏 */
+.ethnic-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+/* ── 内容区智能装饰 ── */
+.content-decor-zone {
+  position: relative;
+  isolation: isolate;
+}
+
+/* 页面级装饰容器：撑满视口宽，纹样落左右留白 + 中间水印 */
+.content-decor-zone.page > .content-decor-container,
+.content-decor-zone.article-block > .content-decor-container,
+.content-decor-zone.cover-screen > .content-decor-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  max-width: 100vw;
+  height: 100%;
+  min-height: 100%;
+}
+
+/* 区块级装饰：仅在区块内部 */
+.intro.content-decor-zone > .content-decor-container,
+.dashboard.content-decor-zone > .content-decor-container,
+.act-one-header.content-decor-zone > .content-decor-container,
+.content-block.content-decor-zone > .content-decor-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+}
+
+.content-decor-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.content-decor-zone > :not(.content-decor-container) {
+  position: relative;
+  z-index: 1;
+}
+
+.content-decor {
+  position: absolute;
+  pointer-events: none;
+  transform-origin: center center;
+}
+
+.content-decor svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* 角色：左右页边距（落在正文列两侧留白区） */
+.content-decor--margin { z-index: 0; }
+
+.content-decor--side-left {
+  left: 3.5% !important;
+}
+
+.content-decor--side-right {
+  right: 3.5% !important;
+}
+
+/* 正文列约 66.67% 居中 → 左右各 ~16.7% 留白，纹样锚定在留白中央 */
+@media (min-width: 1024px) {
+  .content-decor-zone.page > .content-decor-container .content-decor--side-left,
+  .content-decor-zone.article-block > .content-decor-container .content-decor--side-left {
+    left: clamp(12px, 8vw, 120px) !important;
+  }
+
+  .content-decor-zone.page > .content-decor-container .content-decor--side-right,
+  .content-decor-zone.article-block > .content-decor-container .content-decor--side-right {
+    right: clamp(12px, 8vw, 120px) !important;
+  }
+}
+
+/* 角色：中间水印（文字背后，极低透明度） */
+.content-decor--watermark,
+.content-decor--side-center {
+  z-index: 0;
+  filter: blur(0.2px);
+  pointer-events: none;
+}
+
+/* 角色：远角线条 */
+.content-decor--corner { z-index: 0; }
+
+/* 角色：区块内角饰 */
+.content-decor--inline { z-index: 0; }
+
+/* ── 密度透明度（切忌喧宾夺主）── */
+.decor-density--rich .content-decor--margin,
+.decor-density--rich .content-decor--side-left,
+.decor-density--rich .content-decor--side-right  { opacity: 0.12; }
+
+.decor-density--moderate .content-decor--margin,
+.decor-density--moderate .content-decor--side-left,
+.decor-density--moderate .content-decor--side-right  { opacity: 0.09; }
+
+/* 字多：仅左右轻点缀，不加中间水印 */
+.decor-density--light-text .content-decor--margin,
+.decor-density--light-text .content-decor--side-left,
+.decor-density--light-text .content-decor--side-right  { opacity: 0.045; }
+
+.decor-density--light-text .content-decor--watermark,
+.decor-density--light-text .content-decor--side-center { display: none; }
+
+.decor-density--light-image .content-decor--margin,
+.decor-density--light-image .content-decor--side-left,
+.decor-density--light-image .content-decor--side-right  { opacity: 0.04; }
+
+/* ── 章节分隔线装饰（标题下方点缀） ── */
+.article-h3,
+.dashboard-title,
+.intro-label {
+  position: relative;
+}
+
+.article-h3::after,
+.dashboard-title::after {
+  content: '';
+  display: block;
+  width: min(120px, 30%);
+  height: 1px;
+  margin: 10px 0 0;
+  background: linear-gradient(
+    90deg,
+    var(--dunhuang-red) 0%,
+    var(--bliss-gold) 45%,
+    transparent 100%
+  );
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.intro-label::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 6px;
+  margin-top: 8px;
+  background:
+    radial-gradient(circle, var(--bliss-gold) 1px, transparent 1px) 0 50% / 6px 6px,
+    linear-gradient(90deg, var(--dunhuang-red), var(--bliss-gold), var(--hani-indigo));
+  background-repeat: no-repeat;
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* 纯色区块底纹（图表/看板留白区） */
+.dashboard,
+.intro,
+.content-block {
+  background-image: radial-gradient(
+    ellipse 80% 60% at 50% 50%,
+    rgba(180, 150, 120, 0.03),
+    transparent 70%
+  );
+}
+
+/* 分层滚动面板：纤维纹理（::before 在 horizontal-story 中被关，此处保留给非 PC） */
+html.story-layered .story-panel {
+  position: relative;
+}
+
+html.story-layered .story-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-color: rgba(245, 239, 230, 0.82);
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent 0,
+      transparent 2px,
+      rgba(61, 43, 31, 0.016) 2px,
+      rgba(61, 43, 31, 0.016) 3px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 4px,
+      rgba(61, 43, 31, 0.011) 4px,
+      rgba(61, 43, 31, 0.011) 5px
+    ),
+    radial-gradient(ellipse 50% 42% at 0% 0%, var(--aged-tint), transparent 72%),
+    radial-gradient(ellipse 50% 42% at 100% 0%, var(--aged-tint), transparent 72%),
+    radial-gradient(ellipse 50% 42% at 0% 100%, var(--aged-tint), transparent 72%),
+    radial-gradient(ellipse 50% 42% at 100% 100%, var(--aged-tint), transparent 72%);
+  opacity: 0.88;
+}
+
+/* 每幕面板内左右纹样（配合 fixed 层，分层滚动时可见） */
+.ethnic-panel-rails {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.ethnic-panel-rails .ethnic-bg__rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+}
+
+.ethnic-panel-rails .ethnic-bg__veil {
+  position: absolute;
+  inset: 0;
+}
+
+/* 非分层模式：各幕也透出印刷底 */
+.story-panel {
+  position: relative;
+}
+
+.story-panel .ethnic-print-bg {
+  z-index: 0;
+}
+
+.story-panel__scroll,
+.story-panel .cover-screen {
+  position: relative;
+  z-index: 2;
+}
+/* 主内容轨道置于背景之上 */
+.story-track,
+.story-nav,
+.nav-toggle,
+.story-scroll-hint {
+  position: relative;
+  z-index: 1;
+}
+
+/* 响应式：小屏保留左右纹样，缩小中间水印 */
+@media (max-width: 900px) {
+  .content-decor--side-left,
+  .content-decor--side-right,
+  .content-decor--margin {
+    opacity: 0.04 !important;
+    transform: scale(0.8);
+  }
+
+  .content-decor--watermark,
+  .content-decor--side-center {
+    opacity: 0.03 !important;
+    transform: scale(0.85);
+  }
+}
+
+@media (max-width: 600px) {
+  .ethnic-bg__corner {
+    width: clamp(72px, 28vw, 140px);
+    height: clamp(72px, 28vw, 140px);
+  }
+
+  .ethnic-bg__corner--tl { opacity: 0.06; }
+  .ethnic-bg__corner--tr,
+  .ethnic-bg__corner--bl { opacity: 0.04; }
+
+  .content-decor--side-left,
+  .content-decor--side-right {
+    transform: scale(0.65);
+    opacity: 0.035 !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content-decor--flip svg {
+    transform: none;
+  }
+
+  .ethnic-print-stack__layer {
+    transition: none;
+  }
+}

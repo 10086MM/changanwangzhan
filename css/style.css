@@ -1,0 +1,510 @@
+@font-face {
+  font-family: '禹卫书法行书';
+  src: local('禹卫书法行书'),
+       local('禹卫书法行书简'),
+       local('YuweiXingshu'),
+       local('YWShuFengXingShuJ'),
+       url('../fonts/YuweiXingshu.woff2') format('woff2'),
+       url('../fonts/YuweiXingshu.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: '汉仪大标宋';
+  src: local('汉仪大标宋'),
+       local('汉仪大标宋简'),
+       local('HYDaBiaoSongJ'),
+       local('HYDaBiaoSong'),
+       url('../fonts/HYDaBiaoSong.woff2') format('woff2'),
+       url('../fonts/HYDaBiaoSong.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: '方正小标宋';
+  src: local('方正小标宋_GBK'),
+       local('方正小标宋简体'),
+       local('FZXiaoBiaoSong-B05S'),
+       local('FZXBSJW'),
+       local('FZXiaoBiaoSong'),
+       url('../fonts/FZXiaoBiaoSong.woff2') format('woff2'),
+       url('../fonts/FZXiaoBiaoSong.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-cover-headline: '汉仪大标宋', 'HYDaBiaoSongJ', 'HYDaBiaoSong', 'SimSun', serif;
+  --font-cover-subtitle: '禹卫书法行书', 'YuweiXingshu', 'YWShuFengXingShuJ', 'KaiTi', cursive;
+  --font-act-header: '方正小标宋', 'FZXiaoBiaoSong', 'FZXBSJW', 'SimSun', serif;
+  --color-cover-subtitle: #1a6fb5;
+  --bg-base: #f5efe6;
+  --bg-dark: #ebe3d6;
+  --bg-warm: #e8dfd0;
+  --paper: rgba(245, 239, 230, 0.6);
+  --paper-border: rgba(139, 26, 26, 0.12);
+  --text: #3d2b1f;
+  --text-soft: #5a4638;
+  --text-muted: #7a6a58;
+  --accent-red: #8b1a1a;
+  --accent-gold: #d4a843;
+  --accent-gold-light: #e8c96a;
+  --accent-indigo: #2f5a4a;
+  --accent-earth: #6b5344;
+  --dashboard-bg: transparent;
+  --dashboard-card: transparent;
+  --highlight-yellow: #d4a843;
+  --ethnic-pattern: rgba(139, 26, 26, 0.04);
+  --ethnic-pattern-red: rgba(47, 90, 74, 0.035);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto;
+  overscroll-behavior-y: none;
+}
+
+body {
+  font-family: 'Noto Serif SC', 'SimSun', serif;
+  color: var(--text);
+  line-height: 1.9;
+  min-height: 100vh;
+  overscroll-behavior-y: none;
+  background-color: var(--bg-base);
+  background-image: none;
+  background-attachment: scroll;
+}
+
+/* 去掉两侧竖条框饰 */
+body::before,
+body::after {
+  display: none;
+}
+
+/* 导航 */
+.nav-toggle {
+  position: fixed;
+  top: 28px;
+  right: 32px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  cursor: pointer;
+  opacity: 0.75;
+  border: none;
+  background: transparent;
+  padding: 4px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 28px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  width: 66.667%;
+  max-width: none;
+  margin: 0 auto;
+  padding: 8px 40px clamp(64px, 10vh, 120px);
+}
+
+/* ===== 顶部横幅 — 全宽 ===== */
+.hero-banner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  text-align: center;
+  padding: 48px 120px 16px;
+}
+
+/* ===== 主标题区 — 书法风 ===== */
+.hero {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.hero-top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  gap: 24px 48px;
+  margin-bottom: 36px;
+}
+
+.hero-brush-left {
+  font-family: 'Ma Shan Zheng', 'ZCOOL XiaoWei', cursive;
+  font-size: clamp(7.2rem, 24vw, 12rem);
+  color: rgba(240, 235, 225, 0.92);
+  text-shadow: 6px 9px 18px rgba(0, 0, 0, 0.18);
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+}
+
+.hero-brush-right {
+  font-family: 'Ma Shan Zheng', 'ZCOOL XiaoWei', cursive;
+  font-size: clamp(6rem, 21vw, 10.2rem);
+  color: var(--accent-red);
+  text-shadow: 3px 6px 12px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.04em;
+}
+
+.hero-bridge {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: clamp(3rem, 9vw, 3.75rem);
+  color: rgba(255, 255, 255, 0.82);
+  font-style: italic;
+  transform: rotate(-2deg);
+  margin: 24px 0 8px;
+  letter-spacing: 0.2em;
+}
+
+.hero-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(12px, 4vw, 40px);
+  margin-top: 0;
+}
+
+.hero-char {
+  font-family: 'Ma Shan Zheng', 'ZCOOL XiaoWei', cursive;
+  font-size: clamp(3.5rem, 14vw, 6.5rem);
+  color: var(--text);
+  line-height: 1;
+  text-shadow: 3px 4px 0 rgba(0, 0, 0, 0.08);
+}
+
+.hero-icon {
+  flex-shrink: 0;
+  width: clamp(100px, 28vw, 180px);
+  height: auto;
+}
+
+.hero-sub {
+  margin-top: 20px;
+  font-size: 2.2rem;
+  color: var(--text-muted);
+  letter-spacing: 0.35em;
+}
+
+/* ===== 导语 ===== */
+.intro {
+  background: transparent;
+  border: none;
+  padding: 40px 0;
+  margin-bottom: 48px;
+  position: relative;
+  box-shadow: none;
+}
+
+.intro-label {
+  display: inline-block;
+  background: transparent;
+  color: var(--highlight-yellow);
+  font-family: '禹卫书法行书', 'Ma Shan Zheng', cursive;
+  font-weight: 700;
+  font-size: 2.3rem;
+  padding: 0;
+  margin-bottom: 20px;
+  letter-spacing: 0.15em;
+}
+
+.intro p {
+  font-size: 2.625rem;
+  text-align: justify;
+  color: rgba(240, 235, 225, 0.92);
+  line-height: 1.85;
+}
+
+.intro em {
+  font-style: normal;
+  color: var(--accent-red);
+  font-weight: 600;
+}
+
+/* ===== 图表说明 ===== */
+.chart-caption {
+  color: var(--accent-red);
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+
+/* ===== 数字看板 ===== */
+.dashboard {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 28px 0 32px;
+  margin-bottom: 48px;
+  position: relative;
+  box-shadow: none;
+}
+
+.dashboard::before {
+  display: none;
+}
+
+.dashboard-title {
+  color: var(--accent-gold);
+  font-family: 'Noto Serif SC', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: 0.08em;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.metric-card {
+  background: transparent;
+  border: none;
+  padding: 26px 16px;
+  text-align: center;
+  position: relative;
+}
+
+.metric-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-gold), transparent);
+  opacity: 0.55;
+}
+
+.metric-value {
+  font-family: 'Ma Shan Zheng', 'Noto Serif SC', serif;
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  color: var(--accent-gold-light);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  color: rgba(230, 220, 200, 0.6);
+  letter-spacing: 0.12em;
+}
+
+/* ===== 正文 ===== */
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.content-block {
+  background: transparent;
+  border: none;
+  padding: 40px 0;
+  box-shadow: none;
+}
+
+.content-block:last-child {
+  padding-bottom: 12px;
+}
+
+.content p {
+  font-size: 2.625rem;
+  text-align: center;
+  color: rgba(240, 235, 225, 0.92);
+  line-height: 2;
+}
+
+.highlight-gold {
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 1.35em;
+  color: var(--accent-gold);
+  letter-spacing: 0.05em;
+}
+
+.highlight-red {
+  color: var(--accent-red);
+  font-weight: 700;
+}
+
+.content-divider {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 2.25rem;
+  letter-spacing: 0.1em;
+  margin: 10px 0;
+}
+
+/* 四维 — 印章风 */
+.dimensions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+  justify-content: center;
+  margin-top: 30px;
+  margin-bottom: 0;
+}
+
+.dimension-tag {
+  width: auto;
+  height: auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  color: var(--accent-red);
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 3.25rem;
+  transform: rotate(-3deg);
+  background: transparent;
+  box-shadow: none;
+  padding: 8px 4px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.dimension-tag:nth-child(even) {
+  transform: rotate(2deg);
+}
+
+/* ===== 第一幕 ===== */
+.act-section {
+  margin-top: 120px;
+  padding: 90px 0;
+  text-align: center;
+  border-top: none;
+}
+
+.act-number {
+  display: block;
+  font-family: var(--font-act-header);
+  font-size: clamp(3rem, 9vw, 5.25rem);
+  font-weight: 700;
+  color: var(--highlight-yellow);
+  letter-spacing: 0.3em;
+  margin-bottom: 24px;
+}
+
+.act-title {
+  font-family: 'Ma Shan Zheng', 'ZCOOL XiaoWei', cursive;
+  font-size: clamp(6rem, 18vw, 10.5rem);
+  color: var(--accent-red);
+  font-weight: 400;
+  line-height: 1.2;
+  text-shadow: 4.5px 9px 18px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.08em;
+  margin-bottom: 36px;
+}
+
+.act-subtitle {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(2.7rem, 7.5vw, 3.94rem);
+  color: rgba(240, 235, 225, 0.92);
+  letter-spacing: 0.15em;
+  line-height: 1.8;
+}
+
+/* 页脚 */
+footer {
+  position: relative;
+  z-index: 10;
+  margin-top: 0;
+  padding: 48px 24px 64px;
+  text-align: center;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.2em;
+  border-top: none;
+  background: transparent;
+}
+
+.footer-ethnic {
+  margin-top: 14px;
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 1.35rem;
+  color: rgba(212, 168, 75, 0.55);
+  letter-spacing: 0.35em;
+}
+
+@media (max-width: 600px) {
+  body::before,
+  body::after { display: none; }
+
+  .page {
+    width: 92%;
+    padding: 32px 20px clamp(64px, 10vh, 96px);
+  }
+
+  .hero-banner {
+    padding: 40px 60px 12px;
+  }
+
+  .intro,
+  .content-block {
+    padding: 24px 0;
+  }
+
+  .intro p,
+  .content p {
+    font-size: clamp(1.25rem, 5vw, 2.625rem);
+  }
+
+  .intro-label {
+    font-size: clamp(1.2rem, 4.5vw, 2.3rem);
+  }
+
+  .content-divider {
+    font-size: clamp(1rem, 4vw, 2.25rem);
+  }
+
+  .dimension-tag {
+    font-size: 2rem;
+  }
+
+  .act-section {
+    margin-top: 72px;
+    padding: 60px 0;
+  }
+
+  .act-title {
+    font-size: clamp(3.75rem, 15vw, 10.5rem);
+  }
+
+  .act-subtitle {
+    font-size: clamp(1.875rem, 7.5vw, 3.94rem);
+  }
+
+  .dashboard {
+    padding: 20px 16px 24px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-bottom {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

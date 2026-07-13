@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>长街宴 · 信仰筛选</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+@import url('css/embed-theme.css');
+* {margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'PingFang SC','Noto Sans SC',sans-serif;
+  color:#3d2b1f;
+}
+.container{max-width:1140px;margin:0 auto;padding:30px 20px}
+
+.hero{
+  text-align:center;
+  padding:44px 20px 36px;
+  background:transparent;
+  color:#3d2b1f;
+  border-radius:0;
+  margin-bottom:36px;
+}
+.hero h1{font-size:2.8rem;font-weight:900;letter-spacing:5px}
+.hero .tag{
+  display:inline-block;
+  margin-top:12px;
+  background:#c4a574;color:#3d2b1f;
+  padding:6px 28px;border-radius:999px;font-weight:700;font-size:.95rem;
+}
+
+.gates{display:flex;gap:28px}
+.gate{flex:1;border-radius:24px;padding:22px 18px 28px;background:transparent;box-shadow:none;border:1px solid rgba(107,83,68,.12);transition:transform .25s,border-color .25s}
+.gate:hover{transform:translateY(-6px);border-color:rgba(107,83,68,.22)}
+.gate-l{border-top:8px solid #b5342c}
+.gate-r{border-top:8px solid #357a42}
+
+.gate-head{
+  font-size:1.35rem;font-weight:900;
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:18px;padding-bottom:10px;
+  border-bottom:2px solid #e6dace;
+}
+.gate-l .gate-head{color:#b5342c}
+.gate-r .gate-head{color:#357a42}
+
+/* ===== 图片网格 ===== */
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.fcard{
+  position:relative;
+  border-radius:16px;
+  overflow:hidden;
+  aspect-ratio:1/1;
+  cursor:pointer;
+  background:rgba(245,239,230,.5);
+  transition:transform .2s,box-shadow .2s;
+  box-shadow:0 4px 14px rgba(0,0,0,.06);
+}
+.fcard:hover{transform:scale(1.04);box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.fcard img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* 极小标签 */
+.fcard .mini{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(0,0,0,.62));
+  color:#fff;font-size:.72rem;
+  padding:18px 6px 5px;text-align:center;
+  letter-spacing:.5px;
+}
+
+/* hover tip */
+.fcard .tip{
+  position:absolute;inset:0;
+  background:rgba(30,20,10,.82);
+  color:#ffe8c8;font-size:.78rem;
+  display:flex;align-items:center;justify-content:center;
+  padding:8px;text-align:center;
+  opacity:0;transition:opacity .2s;
+  border-radius:16px;
+}
+.fcard:hover .tip{opacity:1}
+
+/* ===== 引语 ===== */
+.quote{
+  margin:48px 0 20px;
+  background:rgba(245,239,230,.65);
+  border-radius:40px 12px 40px 12px;
+  padding:26px 30px;text-align:center;
+  font-size:1.05rem;color:#3d2b1f;
+  box-shadow:none;
+}
+.quote b{font-size:1.3rem}
+
+footer{text-align:center;padding:28px 0 18px;font-size:.72rem;color:#786653;border-top:1px solid #dbcfbe;margin-top:40px}
+
+@media(max-width:680px){
+  .gates{flex-direction:column}
+  .fgrid{grid-template-columns:repeat(3,1fr)}
+  .hero h1{font-size:1.9rem}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>长街宴 · 信仰之味</h1>
+    <div class="tag">🚫 禁忌不上席 &nbsp;&nbsp;｜&nbsp;&nbsp; ✅ 可上圣席</div>
+  </div>
+
+  <!-- 双栏 -->
+  <div class="gates">
+
+    <!-- 左：禁忌 -->
+    <div class="gate gate-l">
+      <div class="gate-head">🚫 禁忌不上席</div>
+      <div class="fgrid">
+        <div class="fcard">
+          <img src="image/长街宴美食板块所有图片/snail.jpg" alt="田螺">
+          <span class="mini">田螺</span>
+          <div class="tip">淤泥环境<br>文化视为不洁</div>
+        </div>
+        <div class="fcard">
+          <img src="image/长街宴美食板块所有图片/eel.jpg" alt="黄鳝">
+          <span class="mini">黄鳝</span>
+          <div class="tip">形态模糊<br>不合神圣秩序</div>
+        </div>
+        <div class="fcard">
+          <img src="image/长街宴美食板块所有图片/chicken.jpg" alt="家鸡">
+          <span class="mini">家鸡</span>
+          <div class="tip">日常祭品<br>庄重性不足</div>
+        </div>
+        <div class="fcard">
+          <img src="image/长街宴美食板块所有图片/duck.jpg" alt="家鸭">
+          <span class="mini">家鸭</span>
+          <div class="tip">日常家禽<br>不入寨神圣宴</div>
+        </div>
+        <div class="fcard">
+          <img src="image/长街宴美食板块所有图片/dog.jpg" alt="狗肉">
+          <span class="mini">狗肉</span>
+          <div class="tip">驱鬼用途<br>排除于感恩祭</div>
+        </div>
+        <div class="fcard">
+          <img src="image/长街宴美食板块所有图片/pig.jpg" alt="家猪">
+          <span class="mini">家猪</span>
+          <div class="tip">非祭祀龙猪<br>未被祝祷</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右：可上席 -->
+    <div class="gate gate-r">
+      <div class="gate-head">✅ 可上圣席</div>
+      <div class="fgrid">
+        <div class="fcard">
+          <img src="image/长街宴美食板块所有图片/partridge.jpg" alt="竹鸡">
+          <span class="mini">竹鸡 / 山鸡</span>
+          <div class="tip">山林野性<br>寨神喜爱祭品</div>
+        </div>
+        <div class="fcard">
+          <img src="image/长街宴美食板块所有图片/fish.jpg" alt="梯田鱼">
+          <span class="mini">梯田鱼</span>
+          <div class="tip">稻鱼共生<br>四素同构结晶</div>
+        </div>
+        <div class="fcard">
+          <img src="image/长街宴美食板块所有图片/bird.jpg" alt="鸟类">
+          <span class="mini">鸟类</span>
+          <div class="tip">山林生长<br>自然馈赠</div>
+        </div>
+        <div class="fcard">
+          <img src="image/长街宴美食板块所有图片/bee-larva.jpg" alt="蜂蛹">
+          <span class="mini">蜂蛹</span>
+          <div class="tip">悬崖采集<br>稀缺与勇气</div>
+        </div>
+        <div class="fcard">
+          <img src="image/长街宴美食板块所有图片/quail-egg.jpg" alt="鹌鹑蛋">
+          <span class="mini">鹌鹑蛋</span>
+          <div class="tip">梯田环境<br>自然孕育</div>
+        </div>
+        <div class="fcard">
+          <img src="image/长街宴美食板块所有图片/mushroom.jpg" alt="野生菌">
+          <span class="mini">野生菌</span>
+          <div class="tip">山林自生<br>自然珍品</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 引语 -->
+  <div class="quote">
+    <b>"唯有来自山林与梯田的『自然珍馐』<br>方具资格登上寨神圣宴。"</b>
+  </div>
+
+  <footer>
+    数据新闻大赛 · 哈尼族长街宴 · 信仰筛选模块
+  </footer>
+
+</div>
+<script src="js/embed-child.js"></script>
+</body>
+</html>
